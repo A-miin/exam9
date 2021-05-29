@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Редактирование{% endblock title %}
+{% block nav %}
+{% if user.is_authenticated and perms.gallery.change_album or is_author %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url "gallery:album-update" album.id %}">Update</a>
+  </li>
+{% endif %}
+{% if user.is_authenticated and perms.gallery.delete_album or is_author %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url "gallery:album-delete" album.id %}">Delete</a>
+  </li>
+{% endif %}
+
+{% endblock nav %}
+{% block content %}
+    <form action="{% url 'gallery:album-update' album.id %}" method="post" enctype="multipart/form-data">
+        {% include 'partial/form.html' with button_text="Update" %}
+    </form>
+{% endblock content %}

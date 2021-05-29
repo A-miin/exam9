@@ -55,7 +55,6 @@ class CreatePhotoView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         self.photo = form.save(commit=False)
-        self.photo.album = None
 
         self.photo.author = self.request.user
         self.photo.save()

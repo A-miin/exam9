@@ -22,43 +22,47 @@ class AlbumView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['photos'] = Photo.objects.filter(album = self.object).exclude(is_private=True)
+        context['is_author']=self.object.author==self.request.user
         return context
 
 #
-# class CreatePhotoView(LoginRequiredMixin, CreateView):
-#     template_name = 'photo/create.html'
-#     form_class = PhotoForm
-#     model = Photo
-#     success_url = reverse_lazy('gallery:photo-list')
-#
-#     def form_valid(self, form):
-#         self.photo = form.save(commit=False)
-#         self.photo.album = None
-#
-#         self.photo.author = self.request.user
-#         self.photo.save()
-#         form.save_m2m()
-#         return self.get_success_url()
-#
-#
-# class PhotoUpdateView(PermissionRequiredMixin, UpdateView):
-#     form_class = PhotoForm
-#     model = Photo
-#     template_name = 'photo/update.html'
-#     context_object_name = 'photo'
-#     permission_required = 'gallery.change_photo'
-#
-#     def has_permission(self):
-#         return self.get_object().author == self.request.user or super().has_permission()
-#
-#     def get_success_url(self):
-#         return reverse('photo:view', kwargs={'pk': self.kwargs.get('pk')})
-#
-#
-# class PhotoDeleteView(PermissionRequiredMixin, DeleteView):
-#     model = Photo
-#     template_name = 'partial/delete.html'
-#     context_object_name = 'object'
-#     success_url = reverse_lazy('photo:list')
-#     permission_required = 'gallery.delete_photo'
-#
+class CreateAlbumView(LoginRequiredMixin, CreateView):
+    template_name = 'album/create.html'
+    form_class = AlbumForm
+    model = Album
+    success_url = reverse_lazy('gallery:photo-list')
+
+    def form_valid(self, form):
+        self.album = form.save(commit=False)
+        self.album.author = self.request.user
+        self.album.save()
+        form.save_m2m()
+        return self.get_success_url()
+
+    def get_success_url(self):
+        return redirect('gallery:album-view', pk = self.album.id)
+
+
+class AlbumUpdateView(PermissionRequiredMixin, UpdateView):
+    form_class = AlbumForm
+    model = Album
+    template_name = 'album/update.html'
+    context_object_name = 'album'
+    permission_required = 'gallery.change_album'
+
+    def has_permission(self):
+        return self.get_object().author == self.request.user or super().has_permission()
+
+    def get_success_url(self):
+        return reverse('gallery:album-view', kwargs={'pk': self.kwargs.get('pk')})
+
+
+class AlbumDeleteView(PermissionRequiredMixin, DeleteView):
+    model = Album
+    template_name = 'partial/delete.html'
+    context_object_name = 'object'
+    success_url = reverse_lazy("gallery:photo-list")
+    permission_required = 'gallery.delete_album'
+    def has_permission(self):
+        return self.get_object().author == self.request.user or super().has_permission()
+
