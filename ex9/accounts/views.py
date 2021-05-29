@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.views.generic import DetailView
 from django.contrib.auth import get_user_model
 from gallery.models import Photo, Album
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
-class UserDetailView(DetailView):
+class UserDetailView(LoginRequiredMixin, DetailView):
     model = get_user_model()
     template_name = 'user_detail.html'
     context_object_name = 'user_obj'
