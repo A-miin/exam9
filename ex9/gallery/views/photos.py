@@ -10,11 +10,17 @@ from django.views.generic import (
 )
 from django.urls import reverse, reverse_lazy
 from django.db.models import Q
+from django.views import View
 from django.utils.http import urlencode
-
-from gallery.models import Photo, Album
+import uuid
+from gallery.models import Photo, Album, Link
 from gallery.forms import PhotoForm
 
+class GetUUID(View):
+    def get(self, request, *args, **kwargs):
+        photo = get_object_or_404(Photo, id = kwargs.get('pk'))
+        link = Link.objects.create(photo = photo, link=str(uuid.uuid4()))
+        return redirect('gallery:photo-view', pk=photo.id)
 
 class IndexView(ListView):
     """
@@ -29,7 +35,7 @@ class IndexView(ListView):
     ordering = ('-created_at')
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = queryset.filter(is_private=False)
+        queryset = queryset.filter(Q(is_private=False) & (Q(album__is_private=False)) | Q(album__isnull=False))
         return queryset
 
 class PhotoView(DetailView):

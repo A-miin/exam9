@@ -32,6 +32,14 @@
       </div>
     </div>
   </div>
+
+{% if  is_author %}
+    {% if photo.has_link %}
+        {{ photo.link }}
+    {% else %}
+        <a type="button" href="{% url 'gallery:get-uuid' photo.id %}"  class="btn btn-outline-success">Get uuid</a>
+    {% endif %}
+{% endif %}
     <div class="text-center">
         Пользователи кому понравилось:
       {% for user in photo.favorite.all %}
