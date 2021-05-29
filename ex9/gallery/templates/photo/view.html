@@ -34,8 +34,8 @@
   </div>
 
 {% if  is_author %}
-    {% if photo.has_link %}
-        {{ photo.link }}
+    {% if photo.link %}
+        /uuid/{{ photo.link }}
     {% else %}
         <a type="button" href="{% url 'gallery:get-uuid' photo.id %}"  class="btn btn-outline-success">Get uuid</a>
     {% endif %}

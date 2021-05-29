@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, render
 from django.views.generic import (
     ListView,
     CreateView,
@@ -16,13 +16,23 @@ import uuid
 from gallery.models import Photo, Album, Link
 from gallery.forms import PhotoForm
 
+
+class GetPhoto(View):
+    def get(self,request, *args, **kwargs):
+        uuid = kwargs.get('uuid')
+        photo = Photo.objects.get(link__link=uuid)
+        context={}
+        context['photo'] = photo
+        return render(request,'photo/view.html', context=context )
+
+
 class GetUUID(View):
     def get(self, request, *args, **kwargs):
         photo = get_object_or_404(Photo, id = kwargs.get('pk'))
         link = Link.objects.create(photo = photo, link=str(uuid.uuid4()))
         return redirect('gallery:photo-view', pk=photo.id)
 
-class IndexView(ListView):
+class IndexView(LoginRequiredMixin, ListView):
     """
     Представление для просмотра списка статей. Представление реализовано с
     использованием generic-представления ListView.
@@ -38,7 +48,7 @@ class IndexView(ListView):
         queryset = queryset.filter(Q(is_private=False) & (Q(album__is_private=False)) | Q(album__isnull=False))
         return queryset
 
-class PhotoView(DetailView):
+class PhotoView(LoginRequiredMixin, DetailView):
     model = Photo
     template_name = 'photo/view.html'
 

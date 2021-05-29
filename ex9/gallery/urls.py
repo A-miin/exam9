@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (
 IndexView, CreatePhotoView, PhotoUpdateView, PhotoView, PhotoDeleteView,
-AlbumView, CreateAlbumView,AlbumUpdateView,AlbumDeleteView, GetUUID
+AlbumView, CreateAlbumView,AlbumUpdateView,AlbumDeleteView, GetUUID, GetPhoto
 )
 
 
@@ -19,5 +19,7 @@ urlpatterns = [
     path('album/<int:pk>/delete', AlbumDeleteView.as_view(), name='album-delete'),
     path('albums/<int:pk>', AlbumView.as_view(), name='album-view'),
     path('<int:pk>/get_uuid', GetUUID.as_view(), name='get-uuid'),
+    path('uuid/<uuid>', GetPhoto.as_view(), name='get-photo'),
+
 
 ]

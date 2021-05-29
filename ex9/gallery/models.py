@@ -36,18 +36,18 @@ class Photo(models.Model):
     def __str__(self):
         return f'{self.author}:{self.title}'
 
-    def has_link(self):
-        if self.link.objects.exists():
-            return True
-        else:
-            return False
+    # def has_link(self):
+    #     if self.link.exists():
+    #         return True
+    #     else:
+    #         return False
 
 
 class Link(models.Model):
-    photo = models.ForeignKey('gallery.Photo', on_delete=models.CASCADE, related_name='link')
+    photo = models.OneToOneField('gallery.Photo', on_delete=models.CASCADE, related_name='link')
     link = models.CharField(max_length=512)
     class Meta:
         verbose_name='Link'
         verbose_name_plural='Links'
     def __str__(self):
-        return f'{self.photo.title}:{self.link}'
+        return f'{self.link}'
