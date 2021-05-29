@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'accounts',
 
 #     lib apps
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
