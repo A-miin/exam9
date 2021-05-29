@@ -8,5 +8,6 @@ IndexView, CreatePhotoView, PhotoUpdateView, PhotoView, PhotoDeleteView
 app_name = 'gallery'
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='list'),
+    path('photos/', IndexView.as_view(), name='list'),
+    path('photos/<int:pk>', PhotoView.as_view(), name='view'),
 ]

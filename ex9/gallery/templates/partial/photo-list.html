@@ -16,6 +16,10 @@
                     {% endif %}
                 </p>
                 <p class="card-text"><small class="text-muted">{{ photo.created_at }}</small></p>
+                <a href="{% url "gallery:view" photo.id %}" type="button" class="btn btn-outline-primary">
+                    Детальный просмотр
+                </a>
+
               </div>
             </div>
           </div>
