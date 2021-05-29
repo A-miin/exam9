@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Профиль пользователя {{ user_obj.get_full_name|default:user_obj.username }}{% endblock %}
+{% block page_header %}Личная страница пользователя {{ user_obj.get_full_name|default:user_obj.username }}{% endblock %}
+
+{% block content %}
+    <p>Имя пользователя: {{ user_obj.username }}</p>
+
+    <h2 class="text-center clear">Фотографии автора:</h2>
+    {% include 'partial/photo-list.html' %}
+    <h2 class="text-center clear">Альбомы автора:</h2>
+    {% include 'partial/album-list.html' %}
+    <h2 class="text-center clear">Избранные photo:</h2>
+     {% include 'partial/photo-list.html'  with photos=fav_photos %}
+    <h2 class="text-center clear">Избранные albums:</h2>
+     {% include 'partial/album-list.html'  with albums=fav_albums %}
+    <h2 class="text-center clear">Private photo:</h2>
+     {% include 'partial/photo-list.html'  with photos=private_photos %}
+    <h2 class="text-center clear">Private albums:</h2>
+{#     {% include 'partial/album-list.html'  with albums = private_albums %}#}
+{% endblock %}
