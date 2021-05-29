@@ -16,6 +16,8 @@ class Album(models.Model):
         verbose_name = 'Альбом'
         verbose_name_plural = 'Альбомы'
 
+    def __str__(self):
+        return f'{self.name}: {self.description}'
 
 class Photo(models.Model):
     photo = models.ImageField(upload_to='pics', verbose_name="Фотография")
@@ -30,5 +32,8 @@ class Photo(models.Model):
         db_table = 'photos'
         verbose_name = 'Фото'
         verbose_name_plural = 'Фотографии'
+
+    def __str__(self):
+        return f'{self.author}:{self.title}'
 
 

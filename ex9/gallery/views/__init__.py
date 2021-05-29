@@ -1,0 +1,1 @@
+from gallery.views.photos import IndexView, CreatePhotoView, PhotoUpdateView, PhotoView, PhotoDeleteView

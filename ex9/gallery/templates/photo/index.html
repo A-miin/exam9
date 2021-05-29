@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Список фотографий{% endblock title %}
+{% block content %}
+    <div class="row">
+    {% if not photos %}
+        <h2>НЕТ фотографий</h2>
+    {% endif %}
+        {% include "partial/photo-list.html"  %}
+    </div>
+{% endblock content %}
