@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if has_error %}
+        <p class="form-error">Неправильный логин или пароль</p>
+    {% endif %}
+
+    <form action="" method="POST">
+        {% include "partial/form.html" with button_text="Войти" %}
+    </form>
+{% endblock content %}
