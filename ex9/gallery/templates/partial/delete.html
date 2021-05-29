@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Create{% endblock title %}
+{% block content %}
+     <form method="POST">
+        <h1 class="text-center"> "{{ object }}" - delete?</h1>
+       {% csrf_token %}
+        <div class="buttons mt-5 text-center">
+        <a href="javascript:history.back()" class="btn btn-primary"> No</a>
+       <button class="btn btn-danger">Yes</button>
+        </div>
+        </form>
+{% endblock content %}

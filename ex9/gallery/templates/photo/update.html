@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Редактирование{% endblock title %}
+{% block content %}
+    <form action="{% url 'gallery:photo-update' photo.id %}" method="post" enctype="multipart/form-data">
+        {% include 'partial/form.html' with button_text="Update" %}
+    </form>
+{% endblock content %}

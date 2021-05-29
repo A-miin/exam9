@@ -27,31 +27,43 @@ class IndexView(ListView):
     model = Photo
     context_object_name = 'photos'
     ordering = ('-created_at')
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(is_private=False)
+        return queryset
 
 class PhotoView(DetailView):
     model = Photo
     template_name = 'photo/view.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_author']=self.object.author==self.request.user
+        return context
 
 
 class CreatePhotoView(LoginRequiredMixin, CreateView):
     template_name = 'photo/create.html'
     form_class = PhotoForm
     model = Photo
-    success_url = reverse_lazy('photo:list')
+    success_url = reverse_lazy('gallery:photo-list')
+
+    def get_form_kwargs(self):
+        kwargs = super(CreatePhotoView, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
 
     def form_valid(self, form):
         self.photo = form.save(commit=False)
-        try:
-            album = get_object_or_404(Album, id=self.kwargs.get('pk'))
-            self.photo.album = album
-        except:
-            self.photo.album = None
+        self.photo.album = None
 
-
+        self.photo.author = self.request.user
         self.photo.save()
-        form.save_m2m()
-        return self.get_success_url()
 
+        return  self.get_success_url()
+
+    def get_success_url(self):
+        return redirect('gallery:photo-view', pk = self.photo.id)
 
 class PhotoUpdateView(PermissionRequiredMixin, UpdateView):
     form_class = PhotoForm
@@ -64,13 +76,19 @@ class PhotoUpdateView(PermissionRequiredMixin, UpdateView):
         return self.get_object().author == self.request.user or super().has_permission()
 
     def get_success_url(self):
-        return reverse('photo:view', kwargs={'pk': self.kwargs.get('pk')})
+        return reverse('gallery:photo-view', kwargs={'pk': self.kwargs.get('pk')})
 
+    def get_form_kwargs(self):
+        kwargs = super(PhotoUpdateView, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
 
 class PhotoDeleteView(PermissionRequiredMixin, DeleteView):
     model = Photo
     template_name = 'partial/delete.html'
     context_object_name = 'object'
-    success_url = reverse_lazy('photo:list')
+    success_url = reverse_lazy('gallery:photo-list')
     permission_required = 'gallery.delete_photo'
+    def has_permission(self):
+        return self.get_object().author == self.request.user or super().has_permission()
 

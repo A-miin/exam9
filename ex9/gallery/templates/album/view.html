@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Album {% endblock title %}
+{% block content %}
+    <div class="row">
+    <h1>{{ object.name }}</h1>
+        <p>{{ object.description }}</p>
+        {% include "partial/photo-list.html"  %}
+    </div>
+{% endblock content %}

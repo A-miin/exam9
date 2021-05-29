@@ -1,4 +1,17 @@
 {% extends 'base.html' %}
+{% block nav %}
+{% if user.is_authenticated and perms.gallery.change_photo or is_author %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url "gallery:photo-update" photo.id %}">Update</a>
+  </li>
+{% endif %}
+{% if user.is_authenticated and perms.gallery.delete_photo or is_author %}
+  <li class="nav-item">
+    <a class="nav-link" href="{% url "gallery:photo-delete" photo.id %}">Delete</a>
+  </li>
+{% endif %}
+
+{% endblock nav %}
 {% block content %}
     <div class="card mb-3" style="max-width: 100%;">
   <div class="row g-0">
@@ -22,7 +35,7 @@
     <div class="text-center">
         Пользователи кому понравилось:
       {% for user in photo.favorite.all %}
-          <a href="">{{ user.username }}</a>
+          <a href="{% url 'user-detail' user.id %}">{{ user.username }}</a>
           {% if not forloop.last %}
               ,
           {% endif %}

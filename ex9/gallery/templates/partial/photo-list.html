@@ -12,11 +12,11 @@
                     Автор:{{ photo.author }}
                     {% if photo.album %}
                         <br>
-                    Альбом: <a href="">{{ photo.album }}</a>
+                    Альбом: <a href="{% url 'gallery:album-view' photo.album.id %}">{{ photo.album }}</a>
                     {% endif %}
                 </p>
                 <p class="card-text"><small class="text-muted">{{ photo.created_at }}</small></p>
-                <a href="{% url "gallery:view" photo.id %}" type="button" class="btn btn-outline-primary">
+                <a href="{% url "gallery:photo-view" photo.id %}" type="button" class="btn btn-outline-primary">
                     Детальный просмотр
                 </a>
 

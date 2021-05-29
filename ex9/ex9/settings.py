@@ -135,3 +135,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/uploads/'
 
 
+LOGIN_REDIRECT_URL = 'gallery:photo-list'
+LOGOUT_REDIRECT_URL = 'gallery:photo-list'
