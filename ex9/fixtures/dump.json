@@ -1,0 +1,195 @@
+[
+{
+  "model": "gallery.album",
+  "pk": 4,
+  "fields": {
+    "name": "альбом 1, автор:админ, изб:юзер",
+    "description": "альбом1 поль админ",
+    "author": 1,
+    "created_at": "2021-05-29T10:16:55.616Z",
+    "is_private": false,
+    "favorite": [
+      3
+    ]
+  }
+},
+{
+  "model": "gallery.album",
+  "pk": 5,
+  "fields": {
+    "name": "Альбом 2, автор:админ, изб: модер, админ",
+    "description": "Альбом 2, автор:админ, изб: модер, админ",
+    "author": 1,
+    "created_at": "2021-05-29T10:17:39.623Z",
+    "is_private": false,
+    "favorite": [
+      1,
+      2
+    ]
+  }
+},
+{
+  "model": "gallery.album",
+  "pk": 6,
+  "fields": {
+    "name": "Альбом 3,  автор:админ, приватный",
+    "description": "Альбом 3,  автор:админ, приватный",
+    "author": 1,
+    "created_at": "2021-05-29T10:18:08.638Z",
+    "is_private": true,
+    "favorite": []
+  }
+},
+{
+  "model": "gallery.album",
+  "pk": 7,
+  "fields": {
+    "name": "Альбом 3,  автор:юзер, приватный",
+    "description": "",
+    "author": 3,
+    "created_at": "2021-05-29T10:18:28.704Z",
+    "is_private": true,
+    "favorite": []
+  }
+},
+{
+  "model": "gallery.album",
+  "pk": 9,
+  "fields": {
+    "name": "Амин",
+    "description": "nrynyrmn",
+    "author": 3,
+    "created_at": "2021-05-29T11:46:26.556Z",
+    "is_private": false,
+    "favorite": []
+  }
+},
+{
+  "model": "gallery.album",
+  "pk": 10,
+  "fields": {
+    "name": "Амин",
+    "description": "vswvwsbw",
+    "author": 3,
+    "created_at": "2021-05-29T11:46:40.498Z",
+    "is_private": true,
+    "favorite": []
+  }
+},
+{
+  "model": "gallery.photo",
+  "pk": 11,
+  "fields": {
+    "photo": "pics/ноут1_W8LfRYd.jpg",
+    "title": "фото1, атвор:админ, изб:модер, юзер",
+    "created_at": "2021-05-29T10:19:11.454Z",
+    "author": 1,
+    "album": null,
+    "is_private": false,
+    "favorite": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "gallery.photo",
+  "pk": 12,
+  "fields": {
+    "photo": "pics/ремонт_nTAkIfY.jpeg",
+    "title": "фото2, атвор:модер, изб:модер, юзер, приватный",
+    "created_at": "2021-05-29T10:19:44.300Z",
+    "author": 2,
+    "album": null,
+    "is_private": true,
+    "favorite": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "gallery.photo",
+  "pk": 13,
+  "fields": {
+    "photo": "pics/окрошка_SkYktyT.jpg",
+    "title": "фото3, атвор:модер, альбом:альбом1, изб:админ",
+    "created_at": "2021-05-29T10:20:33.878Z",
+    "author": 2,
+    "album": 4,
+    "is_private": false,
+    "favorite": [
+      1
+    ]
+  }
+},
+{
+  "model": "gallery.photo",
+  "pk": 14,
+  "fields": {
+    "photo": "pics/1_djTrJqc.png",
+    "title": "фото4, атвор:юзер, альбом:альбом2, изб:все",
+    "created_at": "2021-05-29T10:21:02.774Z",
+    "author": 3,
+    "album": 5,
+    "is_private": false,
+    "favorite": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "gallery.photo",
+  "pk": 15,
+  "fields": {
+    "photo": "pics/аттрактор_Xqc4Mcz.jpeg",
+    "title": "фото5, атвор:админ, альбом:альбом1, приватный",
+    "created_at": "2021-05-29T10:21:31.996Z",
+    "author": 1,
+    "album": 4,
+    "is_private": true,
+    "favorite": []
+  }
+},
+{
+  "model": "gallery.photo",
+  "pk": 24,
+  "fields": {
+    "photo": "pics/окрошка_f22ihVw.jpg",
+    "title": "Sulayman Too",
+    "created_at": "2021-05-29T11:15:20.303Z",
+    "author": 3,
+    "album": null,
+    "is_private": false,
+    "favorite": []
+  }
+},
+{
+  "model": "gallery.photo",
+  "pk": 25,
+  "fields": {
+    "photo": "pics/ноут1_pUmr8yB.jpg",
+    "title": "bsbsbsdbkln",
+    "created_at": "2021-05-29T11:39:47.039Z",
+    "author": 3,
+    "album": null,
+    "is_private": false,
+    "favorite": []
+  }
+},
+{
+  "model": "gallery.photo",
+  "pk": 27,
+  "fields": {
+    "photo": "pics/ремонт_IeiXL49.jpeg",
+    "title": "Sulayman Too",
+    "created_at": "2021-05-29T11:47:28.682Z",
+    "author": 3,
+    "album": 9,
+    "is_private": false,
+    "favorite": []
+  }
+}
+]

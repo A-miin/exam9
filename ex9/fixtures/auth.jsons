@@ -1,0 +1,89 @@
+[
+{
+  "model": "auth.group",
+  "pk": 1,
+  "fields": {
+    "name": "Moderator",
+    "permissions": [
+      [
+        "change_album",
+        "gallery",
+        "album"
+      ],
+      [
+        "delete_album",
+        "gallery",
+        "album"
+      ],
+      [
+        "change_photo",
+        "gallery",
+        "photo"
+      ],
+      [
+        "delete_photo",
+        "gallery",
+        "photo"
+      ]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$W2nTyBETs5zomJbuLE0Kg5$Xd5BdvCSlL9C2Da7jUaK6K431/3Ov4kXX/CRJwE2a94=",
+    "last_login": "2021-05-29T10:23:08.790Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-05-29T06:50:41.589Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$vN4UNfiwZhnfTzY0o5cO3c$fTERJDoDDVaMfIDicspXkV7XtKFfEwNmfVlEQ3KyER0=",
+    "last_login": "2021-05-29T11:25:00.390Z",
+    "is_superuser": false,
+    "username": "moder",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-05-29T09:13:26Z",
+    "groups": [
+      [
+        "Moderator"
+      ]
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$L1Q2MdNzLNeYkTQwwYQuyl$9NdpX6kSJpVz8Mzj+ZkoKAzKVrsiKReJX6IK6huUj60=",
+    "last_login": "2021-05-29T11:34:33.006Z",
+    "is_superuser": false,
+    "username": "user",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2021-05-29T09:14:01Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
